@@ -1,0 +1,29 @@
+{
+  "name": "Wallet/Passbook File Viewer",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "View *.pkpass files in your browser",
+  "homepage_url": "https://github.com/bkonetzny/webextension-pkpass-viewer",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "permissions": ["webRequest", "webRequestBlocking", "*://*/*.pkpass"],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*.pkpass"],
+      "css": ["src/inject/styles.css"],
+      "js": [
+        "vendor/jquery.min.js",
+        "vendor/jszip.js",
+        "src/inject/handleZip.js",
+        "src/inject/inject.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": ["src/background/background.js"]
+  }
+}
